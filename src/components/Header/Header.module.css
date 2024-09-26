@@ -11,6 +11,11 @@
   height: 70px;
   background-color: #1a1a1a;
 }
+.fixed{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
 /* logo styling */
 .logo_container {
   max-width: 250px;
@@ -155,7 +160,7 @@
     .header_container{
         display: flex;
         flex-direction: column !important;
-        height: auto;
+        height: auto; 
     }
     /* except first child */
     .lower_container ul li:not(:first-child){

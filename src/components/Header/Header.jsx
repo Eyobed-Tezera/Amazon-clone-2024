@@ -1,20 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/img/logo.png";
+import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
 import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import LowerHeader from "./LowerHeader";
+import { DataContext } from "../DataProvider/DataProvider";
 function Header() {
+  const [{basket}, dispatch] = useContext(DataContext);
+  const totalItem = basket?.reduce((amount,item)=>{
+    return item.amount + amount
+  },0)
   return (
     <>
       <section className={classes.fixed}>
+
+      <section>
         <div className={classes.header_container}>
           {/* logo section */}
           <div className={classes.logo_container}>
-            <a href="#">
+            <Link to="/">
               <img src={logo} alt="amazon logo" />
-            </a>
+            </Link>
             {/* Delivery section */}
             <div className={classes.delivery}>
               <span>
@@ -48,7 +56,7 @@ function Header() {
           </div>
           {/* Orders section */}
           <div className={classes.order_container}>
-            <a href="" className={classes.language}>
+            <Link to="" className={classes.language}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1024px-Flag_of_the_United_States.svg.png"
                 alt=""
@@ -56,30 +64,31 @@ function Header() {
               <select name="" id="">
                 <option value="">EN</option>
               </select>
-            </a>
+            </Link>
             {/* Three components inside the orders */}
-            <a href="">
+            <Link to="">
               <div>
                 <p>Hello, Sign in</p>
                 <span className={classes.TheFont}>Account & Lists</span>
               </div>
-            </a>
+            </Link>
 
-            <a href="">
+            <Link to="/orders">
               <p>Returns</p>
               <span className={classes.TheFont}>& Orders</span>
-            </a>
-            <a href="" className={classes.cart}>
+            </Link>
+            <Link to="/cart" className={classes.cart}>
               <div className={classes.margin}>
                 <BiCart size={35} />
                 cart
-                <span>0</span>
+                <span>{totalItem}</span>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
       <LowerHeader />
+      </section>
     </>
   );
 }
