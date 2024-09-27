@@ -39,5 +39,5 @@ app.post("/payment/create", async (req, res) => {
 
 app.listen(2000, (err) => {
   if (err) throw err;
-  console.log("Amazon server Running on Port: 2000,  http://localhost:2000");
+  console.log("Amazon server Running on PORT: 2000,  http://localhost:2000");
 });
