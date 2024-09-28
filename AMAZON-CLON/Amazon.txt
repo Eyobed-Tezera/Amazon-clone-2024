@@ -172,12 +172,12 @@ Together, they make backend development more accessible and efficient for web an
 Thunder clint  == postman
 
 
------ We are useing Firebase Functions to handle HTTP requests. Within those functions, you can interact with Firebase databases (like Firestore or Realtime Database) to manage your application's data effectively. This setup allows you to create a fully functional backend without managing your own servers.
+----- We are using Firebase Functions to handle HTTP requests. Within those functions, you can interact with Firebase databases (like Firestore or Realtime Database) to manage your application's data effectively. This setup allows you to create a fully functional backend without managing your own servers.
 
 
 from the index.js we are going to send to the stripe then the stripe send as the payment intent
 
-       🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯Amanzing explanation of the code below🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯
+       🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯Amazing explanation of the code below🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯
 
 app.post("/payment/create", async (req, res) => {
   const total = req.query.total; // Retrieve the total amount from the query parameters
@@ -212,3 +212,15 @@ If the payment intent is created successfully, this line sends a response back t
 else { res.status(403).json({ message: "Total must be greater than 0" }); }:
 
 If the total is not greater than zero, this block sends back a response with a status code of 403 (forbidden) and a message indicating that the total must be valid.
+ 
+
+              ------------------------steps To deploy our backend with out using functions----------------
+
+ - Create a .gitignore file(and put file that didn't need to be pushed)
+ - Create a new repo for the backend
+ - Then init,add,commit,git branch -M master....
+ - Then use Render(render.com)
+ - create account Git,email..
+ - click New then Web service and select "Build and deploy from Git repository"
+ - Then connect with github and connect to the repo
+ - fill the info and click on create web service.
