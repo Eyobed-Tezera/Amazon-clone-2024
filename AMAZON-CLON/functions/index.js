@@ -4,10 +4,13 @@ const express = require("express");
 const cors = require("cors");
 const stripeKey = process.env.STRIPE_KEY;
 const dotenv = require("dotenv");
+const { setGlobalOptions } = require("firebase-functions/v2");
 dotenv.config;
 const stripe = require("stripe")(stripeKey);
 
 const app = express();
+
+setGlobalOptions({ maxInstances: 10 });
 
 app.use(cors({ origin: true })); //cors({ origin: true }) = Restricts based on the origin of each incoming request.
 
