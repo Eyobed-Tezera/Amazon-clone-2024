@@ -33,8 +33,27 @@
 
 .category_container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns layout */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(320px, 1fr)
+  ); /* 4 columns layout */
+  max-width: 1600px;
+  place-items: center;
+
   gap: 20px; /* Adding spacing between grid items */
   justify-items: center; /* Centers the grid items */
   margin-top: 40px; /* Added margin on top to give space above the section */
+  margin: 0 auto;
 }
+/* .category_container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(350px, 1fr)
+  ); 
+  max-width: 1600px;
+  place-items: center;
+  gap: 20px; 
+  justify-items: center; 
+  margin-top: 40px; 
+} */

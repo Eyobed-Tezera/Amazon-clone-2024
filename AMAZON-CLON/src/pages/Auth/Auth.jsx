@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import classes from "./SignUp.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { auth } from "../../utils/firebase";
 import { ClipLoader } from "react-spinners";
 import { DataContext } from "../../components/DataProvider/DataProvider";
@@ -21,6 +21,8 @@ function Auth() {
   // console.log(email);
   const [{ user }, dispatch] = useContext(DataContext);
   const navigate = useNavigate();
+  const navStateData = useLocation();
+  // console.log(navStateData)
   const authHandler = async (e) => {
     e.preventDefault();
     console.log(e.target.name);
@@ -36,7 +38,7 @@ function Auth() {
             user: userInfo.user,
           });
           setIsLoading({ ...isLoading, signIn: false });
-          navigate("/");
+          navigate(navStateData?.redirect || "/");
         })
         .catch((err) => {
           console.log("The errr", err);
@@ -53,7 +55,7 @@ function Auth() {
             user: userInfo.user,
           });
           setIsLoading({ ...isLoading, signUp: false });
-          navigate("/");
+          navigate(navStateData?.redirect || "/");
         })
         .catch((err) => {
           console.log("The errr", err);
@@ -69,11 +71,23 @@ function Auth() {
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
           alt=""
-        /> 
+        />
       </Link>
       {/* form */}
       <div className={classes.login_container}>
         <h1>Sign In</h1>
+        {navStateData?.state?.msg && (
+          <small
+            style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
+            }}
+          >
+            {navStateData?.state?.msg}
+          </small>
+        )}
         <form action="">
           <div>
             <label htmlFor="email">Email</label>
